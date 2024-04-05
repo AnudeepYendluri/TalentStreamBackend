@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.HashSet;
@@ -36,6 +37,7 @@ public class JobService {
 	    
 	    @Autowired
 	    JobRecruiterRepository jobRecruiterRepository;
+	    
 	    
     @Autowired
     public JobService(JobRepository jobRepository, RecuriterSkillsRepository skillsRepository,CompanyProfileRepository companyProfileRepository) {
@@ -224,4 +226,18 @@ public class JobService {
 	            throw new CustomException("Job not found", HttpStatus.NOT_FOUND);
 	        }
 	    }
+	
+	
+		//filtering api's
+	
+		public List<Job> getActiveJobs() {
+			return jobRepository.findByStatus("Active");
+		}
+
+		public List<Job> getInactiveJobs() {
+			return jobRepository.findByStatus("Inactive");
+		}	
+
+	
+	
 }

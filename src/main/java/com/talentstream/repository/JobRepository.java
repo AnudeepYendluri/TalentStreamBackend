@@ -81,5 +81,6 @@ public interface JobRepository extends JpaRepository<Job, Long>, JpaSpecificatio
 		       @Param("experience") Integer experience,
 		       @Param("specialization") String specialization);
 
-	
+		List<Job> findByStatus(String status);
+		
 }

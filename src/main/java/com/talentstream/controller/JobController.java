@@ -276,4 +276,26 @@ public class JobController {
     public List<Job> getJobsByPromoteState(@PathVariable long applicantId,@PathVariable String promote) {
         return jobService.getJobsByPromoteState(applicantId,promote);
     }
+	
+	//filter api's
+	
+	@GetMapping("/active")
+    public ResponseEntity<List<JobDTO>> getActiveJobs() {
+        List<Job> activeJobs = jobService.getActiveJobs();
+        List<JobDTO> activeJobDTOs = activeJobs.stream()
+                .map(this::convertEntityToDTO) // Convert entity to DTO
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(activeJobDTOs);
+    }
+
+    @GetMapping("/inactive")
+    public ResponseEntity<List<JobDTO>> getInactiveJobs() {
+        List<Job> inactiveJobs = jobService.getInactiveJobs();
+        List<JobDTO> inactiveJobDTOs = inactiveJobs.stream()
+                .map(this::convertEntityToDTO) // Convert entity to DTO
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(inactiveJobDTOs);
+    }
+	
+	
 }
