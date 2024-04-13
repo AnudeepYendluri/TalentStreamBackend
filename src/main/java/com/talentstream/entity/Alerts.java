@@ -32,6 +32,14 @@ public class Alerts {
 	@JoinColumn(name = "applyjobid")
 	private ApplyJob applyJob;
 	
+	private int jobId;
+	
+	public int getJobId() {
+		return jobId;
+	}
+	public void setJobId(int jobId) {
+		this.jobId = jobId;
+	}
 	public ApplyJob getApplyJob() {
 		return applyJob;
 	}
